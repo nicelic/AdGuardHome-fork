@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AdGuard Home: Prepare F5 Debug",
+      "type": "shell",
+      "command": "& '${workspaceFolder}\\scripts\\dev-debug\\build-vscode-debug.ps1'",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "powershell.exe",
+          "args": [
+            "-NoLogo",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command"
+          ]
+        }
+      },
+      "presentation": {
+        "clear": true,
+        "echo": true,
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

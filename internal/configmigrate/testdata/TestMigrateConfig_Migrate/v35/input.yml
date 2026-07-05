@@ -1,0 +1,12 @@
+filtering:
+  rewrites:
+    - domain: example.org
+      answer: 192.0.2.1
+      enabled: true
+    - domain: example.org
+      answer: 2001:db8::1
+      enabled: true
+    - domain: disabled.example
+      answer: 192.0.2.2
+      enabled: false
+schema_version: 34

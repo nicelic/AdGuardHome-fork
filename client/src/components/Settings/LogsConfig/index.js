@@ -1,0 +1,47 @@
+import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
+import Card from '../../ui/Card';
+import { Form } from './Form';
+import { HOUR } from '../../../helpers/constants';
+class LogsConfig extends Component {
+    handleFormSubmit = (values) => {
+        const { t, interval: prevInterval } = this.props;
+        const { interval, customInterval, ...rest } = values;
+        const newInterval = customInterval ? customInterval * HOUR : interval;
+        const data = {
+            ...rest,
+            ignored: values.ignored ? values.ignored.split('\n') : [],
+            interval: newInterval,
+        };
+        if (newInterval < prevInterval) {
+            // eslint-disable-next-line no-alert
+            if (window.confirm(t('query_log_retention_confirm'))) {
+                this.props.setLogsConfig(data);
+            }
+        }
+        else {
+            this.props.setLogsConfig(data);
+        }
+    };
+    handleClear = () => {
+        const { t, clearLogs } = this.props;
+        // eslint-disable-next-line no-alert
+        if (window.confirm(t('query_log_confirm_clear'))) {
+            clearLogs();
+        }
+    };
+    render() {
+        const { t, enabled, interval, processing, processingClear, anonymize_client_ip, ignored, ignoredEnabled, customInterval, } = this.props;
+        return (React.createElement(Card, { title: t('query_log_configuration'), bodyType: "card-body box-body--settings", id: "logs-config" },
+            React.createElement("div", { className: "form" },
+                React.createElement(Form, { initialValues: {
+                        enabled,
+                        interval,
+                        customInterval,
+                        anonymize_client_ip,
+                        ignored: ignored?.join('\n'),
+                        ignored_enabled: ignoredEnabled,
+                    }, processing: processing, processingReset: processingClear, onSubmit: this.handleFormSubmit, onReset: this.handleClear }))));
+    }
+}
+export default withTranslation()(LogsConfig);

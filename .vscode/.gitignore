@@ -1,0 +1,6 @@
+AdGuardHome.dev.yaml
+bin/
+dev-debug.json
+dev-workdir/
+*.err.txt
+*.out.txt

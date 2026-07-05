@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AdGuard Home: F5 Dev Debug",
+      "type": "go",
+      "request": "launch",
+      "mode": "exec",
+      "program": "${workspaceFolder}/.vscode/bin/AdGuardHome-debug.exe",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--config",
+        "${workspaceFolder}/.vscode/AdGuardHome.dev.yaml",
+        "--work-dir",
+        "${workspaceFolder}/.vscode/dev-workdir",
+        "--web-addr",
+        "127.0.0.1:8888",
+        "--local-frontend",
+        "--no-check-update",
+        "--no-permcheck",
+        "--verbose"
+      ],
+      "env": {
+        "ADGUARD_HOME_DEV_DEBUG": "1"
+      },
+      "preLaunchTask": "AdGuard Home: Prepare F5 Debug",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "url=(http://127\\.0\\.0\\.1:8888)"
+      },
+      "console": "integratedTerminal"
+    }
+  ]
+}

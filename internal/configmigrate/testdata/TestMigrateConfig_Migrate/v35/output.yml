@@ -1,0 +1,5 @@
+filtering:
+  rewrites: |
+    [example.org]:[192.0.2.1][2001:db8::1][]
+    # [disabled.example]:[192.0.2.2][][]
+schema_version: 35
